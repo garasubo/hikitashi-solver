@@ -1,12 +1,16 @@
 #include "bunsu.h"
 #include <cmath>
+#include <algorithm>
 
-using namespace Bunsu;
 
-static unsigned int euqlid(unsigned int a, unsigned int b)
+static unsigned int gcd(unsigned int a, unsigned int b)
 {
 
-    if(a < b) swap(a,b);
+    if(a < b){
+        unsigned int tmp = a;
+        a = b;
+        b = tmp;
+    }
     if(b == 0) return 0;
     while(a%b!=0){
         unsigned int tmp_b = b;
@@ -16,21 +20,21 @@ static unsigned int euqlid(unsigned int a, unsigned int b)
     return b;
 }
 
-void yakubun()
+void Bunsu::yakubun()
 {
     unsigned int c = gcd(abs(bunshi), abs(bunbo));
 
-    bunsi /= c;
+    bunshi /= c;
     bunbo /= c;
 }
 
-Bunsu(int bunshi)
+Bunsu::Bunsu(int bunshi)
 {
     this->bunshi = bunshi;
     this->bunbo = 1;
 }
 
-Bunsu(int bunshi, int bunbo)
+Bunsu::Bunsu(int bunshi, int bunbo)
 {
     this->bunshi = bunshi;
     this->bunbo = bunbo;
@@ -41,48 +45,48 @@ Bunsu(int bunshi, int bunbo)
     }
 }
 
-Bunsu operator+(const Bunsu& b)
+Bunsu Bunsu::operator+(const Bunsu& b)
 {
     int div = gcd(this->bunbo, b.bunbo);
-    int bunshi = this->bushi * (b.bunbo/div) + b.bushi * (this->bunbo/div);
+    int bunshi = this->bunshi * (b.bunbo/div) + b.bunshi * (this->bunbo/div);
     int bunbo = this->bunbo * (b.bunbo / div);
 
-    return Busu(bunshi, bunbo);
+    return Bunsu(bunshi, bunbo);
 }
-Bunsu operator+(int b)
+Bunsu Bunsu::operator+(int b)
 {
     return (*this + Bunsu(b));
 }
-Bunsu operator-(const Bunsu& b)
+Bunsu Bunsu::operator-(const Bunsu& b)
 {
     int div = gcd(this->bunbo, b.bunbo);
-    int bunshi = this->bushi * (b.bunbo/div) - b.bushi * (this->bunbo/div);
+    int bunshi = this->bunshi * (b.bunbo/div) - b.bunshi * (this->bunbo/div);
     int bunbo = this->bunbo * (b.bunbo / div);
 
     return Bunsu(bunshi, bunbo);
     
 }
-Bunsu operator-(int b)
+Bunsu Bunsu::operator-(int b)
 {
     return (*this - Bunsu(b));
 }
-Bunsu operator*(const Bunsu& b)
+Bunsu Bunsu::operator*(const Bunsu& b)
 {
     int bunshi = this->bunshi * b.bunshi;
     int bunbo = this->bunbo * b.bunbo;
     return Bunsu(bunshi, bunbo);
 }
-Bunsu operator*(int b)
+Bunsu Bunsu::operator*(int b)
 {
     return (*this * Bunsu(b));
 }
-Bunsu operator/(const Bunsu& b)
+Bunsu Bunsu::operator/(const Bunsu& b)
 {
     int bunshi = this->bunshi * b.bunbo;
     int bunbo = this->bunbo * b.bunshi;
     return Bunsu(bunshi, bunbo);
 }
-Bunsu operator/(int b)
+Bunsu Bunsu::operator/(int b)
 {
     return (*this / Bunsu(b));
 }
