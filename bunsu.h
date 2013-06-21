@@ -17,6 +17,8 @@ class Bunsu{
     Bunsu operator*(int b);
     Bunsu operator/(const Bunsu& b);
     Bunsu operator/(int b);
+    inline int getBunshi(){ return bunshi; }
+    inline int getBunbo(){ return bunbo; }
 };
 
 
