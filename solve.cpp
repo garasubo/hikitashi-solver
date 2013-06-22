@@ -47,7 +47,7 @@ string itoa(int num)
 
 string dp(Bunsu tar, int pos)
 {
-    cerr << tar.getBunshi() << "/" << tar.getBunbo() << " " << pos << endl;
+    //cerr << tar.getBunshi() << "/" << tar.getBunbo() << " " << pos << endl;
     pair<int,int> tarp = pair<int,int>(tar.getBunshi(), tar.getBunbo());
 
     if(tar.getBunshi() > MAX_NUM || tar.getBunbo() > MAX_NUM
@@ -69,19 +69,19 @@ string dp(Bunsu tar, int pos)
             
             tmp = dp(tar - btmp, pos|i);
             if(tmp!=""){
-                cerr << "hit" << endl;
+                //cerr << "hit" << endl;
                 return (memo[pos|i][tarp]= "(" + tmp +"+"+it->second+")");
             }
 
             tmp = dp(tar / btmp, pos|i);
             if(tmp!=""){
-                cerr << "hit" << endl;
+                //cerr << "hit" << endl;
                 return (memo[pos|i][tarp] = tmp + "*" + (*it).second );
             }
 
             tmp = dp(tar * btmp, pos|i);
             if(tmp!=""){
-                cerr << "hit" << endl;
+                //cerr << "hit" << endl;
                 return (memo[pos|i][tarp] = tmp + "/" + (*it).second );
             }
         }
