@@ -1,51 +1,31 @@
 
-#include <queue>
 #include <map>
 #include <iostream>
-#include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <stack>
 #include <algorithm>
-#include <bitset>
 #include <sstream>
 #include <string>
 #include <cmath>
-#include <stack>
-#include <math.h>
-#include <list>
-#include <set>
 #include "solve.h"
 
-#define INF (1 << 29)
 #define rep2(i,m,n) for(int i=(int)(m);i<(int)(n);i++)
 #define rep(i,n) rep2(i,0,n)
-#define squere(x) ((x)*(x))
-#define EPS 1e-20
 
 using namespace std;
 
-typedef long long ll;
-typedef unsigned long long ull;
-typedef pair<int,int> P;
-
-int dx[4] = {-1,0,1,0};
-int dy[4] = {0,1,0,-1};
-
 #define MAX_NUM 20000
-#define MAX_N 12
 
 static vector< map<pair<int,int>,string> >memo;
 static int nums_size;
 
-string itoa(int num)
+static string itoa(int num)
 {
     stringstream ss;
     ss << num;
     return ss.str();
 }
 
-string dp(Bunsu tar, int pos)
+static string dp(Bunsu tar, int pos)
 {
     //cerr << tar.getBunshi() << "/" << tar.getBunbo() << " " << pos << endl;
     pair<int,int> tarp = pair<int,int>(tar.getBunshi(), tar.getBunbo());
