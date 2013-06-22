@@ -38,7 +38,7 @@ static string dp(Bunsu tar, int pos)
     if(memo[pos].find(tarp)!=memo[pos].end()){
         return memo[pos][tarp];
     }
-    rep(i,nums_size) rep2(i,1,memo.size()){
+    rep2(i,1,memo.size()){
         if((pos&i) > 0) continue;
         for(auto it=memo[i].begin();it!=memo[i].end();it++){
             if(it->first==tarp) return it->second;
