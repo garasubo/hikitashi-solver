@@ -62,7 +62,7 @@ static string dp(Bunsu tar, int pos)
             tmp = dp(tar * btmp, pos|i);
             if(tmp!=""){
                 //cerr << "hit" << endl;
-                return (memo[pos|i][tarp] = tmp + "/" + (*it).second );
+                return (memo[pos|i][tarp] = tmp + "/(" + (*it).second + ")" );
             }
         }
     }
