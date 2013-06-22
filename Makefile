@@ -5,7 +5,7 @@ SRCS = $(shell ls *.cpp)
 DEPS = $(SRCS:.cpp=.dep)
 OBJS = $(SRCS:.cpp=.o)
 PROGRAM = product
-CFLAGS = -Wall -g -O2 -std=c++0x
+CFLAGS = -Wall -g -O2 -std=c++11
 LDFLAGS = -lstdc++ -lm
 
 .PHONY: all clean
@@ -13,7 +13,7 @@ LDFLAGS = -lstdc++ -lm
 all: $(PROGRAM)
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+	$(CC) $(LDFLAGS) -o $@ $^
 
 %.dep:%.c
 	$(SHELL) -c '$(CC) -MM $< > $@'
