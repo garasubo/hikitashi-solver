@@ -90,3 +90,14 @@ Bunsu Bunsu::operator/(int b)
 {
     return (*this / Bunsu(b));
 }
+
+bool Bunsu::operator==(Bunsu b)
+{
+    return (this->bunshi == b.bunshi && this->bunbo == b.bunbo);
+}
+
+bool BunsuComp::operator()(const Bunsu &a, const Bunsu &b)
+{
+    int c = gcd(a.bunbo,(int)b.bunbo);
+    return (a.bunshi * (b.bunbo/c) < b.bunshi * (a.bunbo/c));
+}

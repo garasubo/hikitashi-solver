@@ -2,10 +2,10 @@
 #define INCLUDED_BUNSU_H
 
 class Bunsu{
-    int bunshi;
-    int bunbo;
     void yakubun();
     public:
+    int bunshi;
+    int bunbo;
     Bunsu(){}
     Bunsu(int bunshi);
     Bunsu(int bunshi, int bunbo);
@@ -19,6 +19,12 @@ class Bunsu{
     Bunsu operator/(int b);
     inline int getBunshi(){ return bunshi; }
     inline int getBunbo(){ return bunbo; }
+    bool operator==(Bunsu b);
+};
+
+class BunsuComp{
+    public:
+    bool operator()(const Bunsu &a, const Bunsu &b);
 };
 
 
