@@ -17,6 +17,7 @@ using namespace std;
 
 static vector< map<pair<int,int>,string> >memo;
 static int nums_size;
+static vector<bool> visited;
 
 static string itoa(int num)
 {
@@ -30,6 +31,7 @@ static string dp(Bunsu tar, int pos)
     //cerr << tar.getBunshi() << "/" << tar.getBunbo() << " " << pos << endl;
     pair<int,int> tarp = pair<int,int>(tar.getBunshi(), tar.getBunbo());
 
+
     if(tar.getBunshi() > MAX_NUM || tar.getBunbo() > MAX_NUM
             || tar.getBunshi() < 0){
         return "";
@@ -41,6 +43,7 @@ static string dp(Bunsu tar, int pos)
     rep2(i,1,memo.size()){
         if((pos&i) > 0) continue;
         for(auto it=memo[i].begin();it!=memo[i].end();it++){
+            if(it->second=="") continue;
             if(it->first==tarp) return it->second;
 
             Bunsu btmp = Bunsu(it->first.first, it->first.second);
@@ -72,6 +75,7 @@ static string dp(Bunsu tar, int pos)
 void solve(vector<int> nums, int tar)
 {
     memo.resize( 1 << nums.size(), map<pair<int,int>,string>() );
+    visited.resize(1 << nums.size(), false);
     rep(i,nums.size()){
         int tar = 1 << i;
         memo[tar][pair<int,int>(nums[i],1)] = itoa(nums[i]);
